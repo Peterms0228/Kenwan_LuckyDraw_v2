@@ -52,6 +52,7 @@
             android:layout_below="@id/btnSpin"
             android:layout_centerInParent="true"
             android:layout_marginTop="16dp"
+            android:visibility="invisible"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/btnSpin" />
@@ -60,13 +61,13 @@
             android:id="@+id/imgBg"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:alpha="0.1"
+            android:alpha="0.3"
             android:padding="32dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:srcCompat="@drawable/bg1" />
+            app:srcCompat="@drawable/bg2" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 

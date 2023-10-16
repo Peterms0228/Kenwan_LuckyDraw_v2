@@ -1,6 +1,6 @@
 package com.example.kenwan_luckydraw_v2;
 
-import static com.example.kenwan_luckydraw_v2.LuckyDrawActivity.itemsList;
+import static com.example.kenwan_luckydraw_v2.LuckyDrawActivity.itemList;
 
 import android.animation.ValueAnimator;
 import android.content.Context;
@@ -10,10 +10,16 @@ import android.graphics.Paint;
 import android.util.AttributeSet;
 import android.view.View;
 
+import java.util.Collections;
+import java.util.HashMap;
+import java.util.Map;
+
 public class LuckyDrawView extends View{
     private Paint sectorPaint;
     private Paint textPaint;
     private float rotationAngle = 0;
+    private Map<String, Integer> valueMap = new HashMap<>();
+    private int colorMapIndex = -1;
 
     public LuckyDrawView(Context context, AttributeSet attrs) {
         super(context, attrs);
@@ -39,20 +45,30 @@ public class LuckyDrawView extends View{
         float height = getHeight();
         float radius = Math.min(width, height) / 2;
 
-        float sectorAngle = 360 / itemsList.size();
-        float rotateWheel = 90 + sectorAngle / 2;
+        float sectorAngle = 360;
+        if(itemList.size() != 0) {
+            Collections.sort(itemList, new LuckyDrawItemComparator());
 
-        for (int i = 0; i < itemsList.size(); i++) {
-            float startAngle = i * sectorAngle - (rotateWheel);
+            sectorAngle = 360 / itemList.size();
 
-            // Set a different color for each sector
-            sectorPaint.setColor(getSectorColor(i));
+            float rotateWheel = 90 + sectorAngle / 2;
 
-            // Draw the sector
-            canvas.drawArc(0, 0, width, height, startAngle + rotationAngle, sectorAngle, true, sectorPaint);
+            for (int i = 0; i < itemList.size(); i++) {
+                float startAngle = i * sectorAngle - (rotateWheel);
 
-            // Draw the sector label closer to the center of the sector
-            drawTextOnArc(canvas, String.valueOf(itemsList.get(i).getId()), radius * 0.8, startAngle + rotationAngle + sectorAngle / 2);
+                // Set a different color for each sector
+                //sectorPaint.setColor(getSectorColor(i));
+                sectorPaint.setColor(getSectorColor(itemList.get(i).getName()));
+
+                // Draw the sector
+                canvas.drawArc(0, 0, width, height, startAngle + rotationAngle, sectorAngle, true, sectorPaint);
+
+                // Draw the sector label closer to the center of the sector
+                drawTextOnArc(canvas, String.valueOf(itemList.get(i).getName()), radius * 0.8, startAngle + rotationAngle + sectorAngle / 2);
+            }
+        }else{
+            sectorPaint.setColor(getSectorColor(0));
+            canvas.drawArc(0, 0, width, height, 0, sectorAngle, true, sectorPaint);
         }
     }
 
@@ -71,12 +87,36 @@ public class LuckyDrawView extends View{
 
 
     private int getSectorColor(int index) {
-        int[] colors = {Color.rgb(255,127,127), Color.rgb(255,201,102)};
+
+        //int[] colors = {Color.rgb(255,127,127), Color.rgb(255,201,102)};
+        int[] colors = {Color.rgb(255,0,0),
+                Color.rgb(255,69,0),
+                Color.rgb(255,99,71),
+                Color.rgb(250,128,114)};
         return colors[index % colors.length];
     }
 
+    private int getSectorColor(String value) {
+
+        int[] colors = {Color.rgb(255,0,0),
+                Color.rgb(255,69,0),
+                Color.rgb(255,99,71),
+                Color.rgb(250,128,114)};
+
+        if (valueMap.containsKey(value)) {
+            return colors[valueMap.get(value)];
+        }else{
+            colorMapIndex++;
+            if(colorMapIndex >= colors.length){
+                colorMapIndex = 0;
+            }
+            valueMap.put(value, colorMapIndex);
+            return colors[colorMapIndex];
+        }
+    }
+
     public void spinWheelToSector(int targetSector, int currentSector) {
-        int numSectors = itemsList.size();
+        int numSectors = itemList.size();
         int distanceSector = ( numSectors - targetSector + currentSector ) % numSectors;
         float targetRotation = distanceSector * (360f / numSectors);
 
