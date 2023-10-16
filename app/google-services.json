@@ -1,0 +1,68 @@
+{
+  "project_info": {
+    "project_number": "931730566101",
+    "firebase_url": "https://kenwanluckydrawitems-default-rtdb.asia-southeast1.firebasedatabase.app",
+    "project_id": "kenwanluckydrawitems",
+    "storage_bucket": "kenwanluckydrawitems.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:931730566101:android:d29323074941dff973eb5c",
+        "android_client_info": {
+          "package_name": "com.example.kenwan_luckydraw_v2"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBhWVUTD9tmdh0mbFsRG_WouZldZCIRqNQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:931730566101:android:0525a690a9edcf0e73eb5c",
+        "android_client_info": {
+          "package_name": "com.example.kenwan_luckydrawwheel"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBhWVUTD9tmdh0mbFsRG_WouZldZCIRqNQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    },
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:931730566101:android:0e8cb3f9ef5f7b9073eb5c",
+        "android_client_info": {
+          "package_name": "com.example.myapplication"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBhWVUTD9tmdh0mbFsRG_WouZldZCIRqNQ"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
